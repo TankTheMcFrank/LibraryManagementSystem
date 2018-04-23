@@ -1,0 +1,13 @@
+HardCopy,8849283,2 Weeks,3,The Fault In Our Stars,John Green,Young Adult Fiction,Books Publishing Co.,3rd Edition
+SoftCopy,8849284,2 Weeks,3,The Great Gatsby,F. Scott Fitzgerald,Historical Fiction,Books Publishing Co.,2nd Edition
+Audio,8849285,2 Weeks,3,The Lord of the Rings,J. R. R. Tolkien,Fantasy,Audio Books Publishing Co.,1st Edition,2 Hours 29 Minutes
+Electronic,8849286,2 Weeks,3,Magic Tree House,Mary Pope Osborne,Fiction,Random House Publishing,144th Edition
+Cassette,8849287,2 Weeks,3,34 Minutes,Bach
+VHS,8849288,2 Weeks,3,1 Hour 44 Minutes,Micheal Bay
+CD,8849289,2 Weeks,3,39 Minutes,Bye Bye Bye,N-Sync
+DVD,8849290,2 Weeks,3,2 Hours 33 Minutes,Star Wars: The Phantom Menace,George Lucas
+Newspaper,8849291,2 Weeks,3,New York Times,New York Times,Daily,New York Times
+Magazine,8849292,2 Weeks,3,Fashion Magazine,George Lopez,March Edition,Magazine Publishing Co.
+WhiteBoard,8849293,2 Weeks,3,A923ZII8,2 Markers,2 Erasers
+Laptop,8849294,2 Weeks,3,password123,1
+Desktop,8849295,2 Weeks,3,password456
