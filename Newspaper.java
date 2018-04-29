@@ -1,9 +1,11 @@
 public class Newspaper extends Other {
   
    public Newspaper(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String titleIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn, 
+                     String titleIn,
                      String authorIn, String editionIn, String publisherIn) {
       super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
+            availableCountIn, checkedOutCountIn,
             titleIn, authorIn, editionIn, publisherIn);
    }
    

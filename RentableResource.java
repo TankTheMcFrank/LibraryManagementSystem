@@ -1,12 +1,12 @@
 public class RentableResource extends Resource {
    
-   public RentableResource(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn);
-   }
+   protected int availableCount;
+   protected int checkedOutCount;
    
-   public String toString() {
-      return super.toString();
+   public RentableResource(int libraryIdNumberIn, String rentalTimeDurationIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn) {
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
+               availableCountIn, checkedOutCountIn);
    }
    
 }

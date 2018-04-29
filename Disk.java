@@ -4,9 +4,11 @@ public class Disk extends RentableResource {
    private String title;
    
    public Disk(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String durationIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String durationIn,
                      String titleIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn);
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn, 
+               availableCountIn, checkedOutCountIn);
       duration = durationIn;
       title = titleIn;
    }

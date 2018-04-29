@@ -6,9 +6,11 @@ public class Book extends RentableResource {
    private String edition;
    
    public Book(int libraryIdNumberIn, String rentalTimeDurationIn,
-            int reservationCountIn, String titleIn, String authorIn,
+            int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+            String titleIn, String authorIn,
             String genreIn, String publisherIn, String editionIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn);
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
+               availableCountIn, checkedOutCountIn);
       title = titleIn;
       author = authorIn;
       genre = genreIn;

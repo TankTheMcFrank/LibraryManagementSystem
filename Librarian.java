@@ -3,9 +3,9 @@ public class Librarian extends User {
 
    public Librarian(String usernameIn, String passwordIn, String nameIn, 
    					String addressIn, String emailAddressIn, 
-   					String phoneNumberIn, String specialIdIn) {
+   					String phoneNumberIn, String statusIn, String specialIdIn) {
       super(usernameIn, passwordIn, nameIn, addressIn, 
-         	emailAddressIn, phoneNumberIn);
+         	emailAddressIn, phoneNumberIn, statusIn);
       specialId = specialIdIn;
    }
    

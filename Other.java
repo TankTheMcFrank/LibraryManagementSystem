@@ -6,9 +6,11 @@ public class Other extends RentableResource {
    protected String publisher;
    
    public Other(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String titleIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String titleIn,
                      String authorIn, String editionIn, String publisherIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn);
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
+            availableCountIn, checkedOutCountIn);
       title = titleIn;
       author = authorIn;
       edition = editionIn;

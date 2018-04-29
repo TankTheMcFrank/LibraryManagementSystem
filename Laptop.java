@@ -3,10 +3,11 @@ public class Laptop extends LibraryRentalComputer {
    private boolean chargingCable;
    
    public Laptop(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String returnLabelIn,
+                     int reservationCountIn, int availableCountIn, 
+                     int checkedOutCountIn, String returnLabelIn,
                      String tempPasswordIn, boolean chargingCableIn) {
       super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
-         returnLabelIn, tempPasswordIn);
+         availableCountIn, checkedOutCountIn, returnLabelIn, tempPasswordIn);
       chargingCable = chargingCableIn;
    }
    

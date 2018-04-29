@@ -3,9 +3,9 @@ public class Client extends User {
 
    public Client(String usernameIn, String passwordIn, String nameIn, 
    					String addressIn, String emailAddressIn, 
-   					String phoneNumberIn, String userIdIn) {
+   					String phoneNumberIn, String statusIn, String userIdIn) {
       super(usernameIn, passwordIn, nameIn, addressIn, 
-         	emailAddressIn, phoneNumberIn);
+         	emailAddressIn, phoneNumberIn, statusIn);
       userId = userIdIn;
    }
    

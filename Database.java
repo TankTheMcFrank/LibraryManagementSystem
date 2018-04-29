@@ -28,15 +28,16 @@ public class Database {
             String address = nextLine.next();
             String emailAddress = nextLine.next();
             String phoneNumber = nextLine.next();
+            String status = nextLine.next();
             String Id = nextLine.next();
          
             if (Id.equals("0")) { //Client
                users.add(new Client(username, password, name, address,
-                        emailAddress, phoneNumber, Id));
-            } 
+                        emailAddress, phoneNumber, status, Id));
+            }
             else { //Id.equals("1") ((Librarian))
                users.add(new Librarian(username, password, name, address,
-                        emailAddress, phoneNumber, Id));
+                        emailAddress, phoneNumber, status, Id));
             }
          }
       
@@ -161,9 +162,10 @@ public class Database {
       
          fileInput.close();
          
-         for (Resource r : resources) {
-            System.out.println(r.toString() + "\n\n");
-         }
+         //Output all the resources and their information
+         // for (Resource r : resources) {
+            // System.out.println(r.toString() + "\n\n");
+         // }
          
          return resources;
       } 
@@ -182,13 +184,15 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String genre = input.next();
          String publisher = input.next();
          String edition = input.next();
          return new HardCopy(libraryIdNumber, rentalTimeDuration, reservationCount,
-               title, author, genre, publisher, edition);
+               availableCount, checkedOutCount, title, author, genre, publisher, edition);
       } 
       catch (Exception e) {
          System.out.println("Error reading in HardCopy Book from Database.");
@@ -205,13 +209,15 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String genre = input.next();
          String publisher = input.next();
          String edition = input.next();
          return new SoftCopy(libraryIdNumber, rentalTimeDuration, reservationCount,
-               title, author, genre, publisher, edition);
+               availableCount, checkedOutCount, title, author, genre, publisher, edition);
       } 
       catch (Exception e) {
          System.out.println("Error reading in SoftCopy Book from Database.");
@@ -228,6 +234,8 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String genre = input.next();
@@ -235,7 +243,7 @@ public class Database {
          String edition = input.next();
          String duration = input.next();
          return new Audio(libraryIdNumber, rentalTimeDuration, reservationCount,
-               title, author, genre, publisher, edition, duration);
+               availableCount, checkedOutCount, title, author, genre, publisher, edition, duration);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Audio Book from Database.");
@@ -252,13 +260,15 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String genre = input.next();
          String publisher = input.next();
          String edition = input.next();
          return new Electronic(libraryIdNumber, rentalTimeDuration, reservationCount,
-               title, author, genre, publisher, edition);
+               availableCount, checkedOutCount, title, author, genre, publisher, edition);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Electronic Book from Database.");
@@ -275,9 +285,12 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String duration = input.next();
          String composer = input.next();
-         return new Cassette(libraryIdNumber, rentalTimeDuration, reservationCount, duration, composer);
+         return new Cassette(libraryIdNumber, rentalTimeDuration, reservationCount, 
+                  availableCount, checkedOutCount, duration, composer);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Cassette Tape from Database.");
@@ -294,9 +307,12 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String duration = input.next();
          String director = input.next();
-         return new VHS(libraryIdNumber, rentalTimeDuration, reservationCount, duration, director);
+         return new VHS(libraryIdNumber, rentalTimeDuration, reservationCount, 
+                  availableCount, checkedOutCount, duration, director);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Cassette Tape from Database.");
@@ -313,10 +329,13 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String duration = input.next();
          String title = input.next();
          String composer = input.next();
-         return new CD(libraryIdNumber, rentalTimeDuration, reservationCount, duration, title, composer);
+         return new CD(libraryIdNumber, rentalTimeDuration, reservationCount,
+                  availableCount, checkedOutCount, duration, title, composer);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Cassette Tape from Database.");
@@ -333,10 +352,13 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String duration = input.next();
          String title = input.next();
          String director = input.next();
-         return new DVD(libraryIdNumber, rentalTimeDuration, reservationCount, duration, title, director);
+         return new DVD(libraryIdNumber, rentalTimeDuration, reservationCount,
+                  availableCount, checkedOutCount, duration, title, director);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Cassette Tape from Database.");
@@ -353,12 +375,14 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String edition = input.next();
          String publisher = input.next();
          return new Newspaper(libraryIdNumber, rentalTimeDuration, reservationCount, 
-                              title, author, edition, publisher);
+                              availableCount, checkedOutCount, title, author, edition, publisher);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Newspaper from Database.");
@@ -375,12 +399,14 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String title = input.next();
          String author = input.next();
          String edition = input.next();
          String publisher = input.next();
          return new Magazine(libraryIdNumber, rentalTimeDuration, reservationCount, 
-                              title, author, edition, publisher);
+                              availableCount, checkedOutCount, title, author, edition, publisher);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Magazine from Database.");
@@ -397,11 +423,13 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String returnLabel = input.next();
          String expoMarkers = input.next();
          String expoErasers = input.next();
          return new WhiteBoard(libraryIdNumber, rentalTimeDuration, reservationCount, 
-                              returnLabel, expoMarkers, expoErasers);
+                              availableCount, checkedOutCount, returnLabel, expoMarkers, expoErasers);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Whiteboard from Database.");
@@ -418,6 +446,8 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String returnLabel = input.next();
          String tempPassword = input.next();
          int chargingCableOrNo = input.nextInt();
@@ -428,7 +458,7 @@ public class Database {
             chargingCable = true;
          }
          return new Laptop(libraryIdNumber, rentalTimeDuration, reservationCount, 
-                              returnLabel, tempPassword, chargingCable);
+                              availableCount, checkedOutCount, returnLabel, tempPassword, chargingCable);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Laptop from Database.");
@@ -445,10 +475,12 @@ public class Database {
          int libraryIdNumber = input.nextInt();
          String rentalTimeDuration = input.next();
          int reservationCount = input.nextInt();
+         int availableCount = input.nextInt();
+         int checkedOutCount = input.nextInt();
          String returnLabel = input.next();
          String tempPassword = input.next();
          return new Desktop(libraryIdNumber, rentalTimeDuration, reservationCount, 
-                              returnLabel, tempPassword);
+                              availableCount, checkedOutCount, returnLabel, tempPassword);
       } 
       catch (Exception e) {
          System.out.println("Error reading in Desktop from Database.");

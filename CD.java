@@ -3,10 +3,11 @@ public class CD extends Disk {
    private String composer;
    
    public CD(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String durationIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String durationIn,
                      String titleIn, String composerIn) {
       super(libraryIdNumberIn, rentalTimeDurationIn,
-            reservationCountIn, durationIn, titleIn);
+            reservationCountIn, availableCountIn, checkedOutCountIn, durationIn, titleIn);
       composer = composerIn; 
    }
    

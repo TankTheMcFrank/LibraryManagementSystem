@@ -4,10 +4,10 @@ public class WhiteBoard extends InLibraryUseResource {
    private String expoErasers;
    
    public WhiteBoard(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String returnLabelIn,
-                     String expoMarkersIn, String expoErasersIn) {
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn, 
+                     String returnLabelIn, String expoMarkersIn, String expoErasersIn) {
       super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
-         returnLabelIn);
+         availableCountIn, checkedOutCountIn, returnLabelIn);
       expoMarkers = expoMarkersIn;
       expoErasers = expoErasersIn;
    }

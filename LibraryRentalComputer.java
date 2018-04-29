@@ -3,10 +3,10 @@ public class LibraryRentalComputer extends InLibraryUseResource {
    private String tempPassword;
    
    public LibraryRentalComputer(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String returnLabelIn,
-                     String tempPasswordIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn,
-         returnLabelIn);
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String returnLabelIn, String tempPasswordIn) {
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn, 
+         availableCountIn, checkedOutCountIn, returnLabelIn);
       tempPassword = tempPasswordIn;
    }
    

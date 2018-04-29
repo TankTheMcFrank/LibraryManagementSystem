@@ -12,7 +12,8 @@ s#i0
 s#k0
 s#j0
 s#l0
-!546;g
+!588;g
+%\011LogInBtn.java
 %\011Laptop.java
 %\011WhiteBoard.java
 %\011LibraryManagementSystem.java
@@ -20,6 +21,7 @@ s#l0
 %\011Resource.java
 %\011SoftCopy.java
 %\011RentableResource.java
+%\011EventHandler.java
 %\011InLibraryUseResource.java
 %\011VHS.java
 %\011Magazine.java
@@ -41,7 +43,8 @@ s#l0
 %\011WebInterface.java
 %\011Tape.java
 %\011Librarian.java
-!546;f
+!588;f
+%\011LogInBtn.java
 %\011Laptop.java
 %\011WhiteBoard.java
 %\011LibraryManagementSystem.java
@@ -49,6 +52,7 @@ s#l0
 %\011Resource.java
 %\011SoftCopy.java
 %\011RentableResource.java
+%\011EventHandler.java
 %\011InLibraryUseResource.java
 %\011VHS.java
 %\011Magazine.java

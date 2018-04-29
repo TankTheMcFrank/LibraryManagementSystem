@@ -3,10 +3,11 @@ public class DVD extends Disk {
    private String director;
    
    public DVD(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String durationIn,
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String durationIn,
                      String titleIn, String directorIn) {
       super(libraryIdNumberIn, rentalTimeDurationIn,
-            reservationCountIn, durationIn, titleIn);
+            reservationCountIn, availableCountIn, checkedOutCountIn, durationIn, titleIn);
       director = directorIn; 
    }
    

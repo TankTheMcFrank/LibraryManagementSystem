@@ -3,9 +3,10 @@ public class VHS extends Tape {
    private String director;
    
    public VHS(int libraryIdNumberIn, String rentalTimeDurationIn,
-                     int reservationCountIn, String durationIn,
-                     String directorIn) {
-      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn, durationIn);
+                     int reservationCountIn, int availableCountIn, int checkedOutCountIn,
+                     String durationIn, String directorIn) {
+      super(libraryIdNumberIn, rentalTimeDurationIn, reservationCountIn, 
+               availableCountIn, checkedOutCountIn,durationIn);
       director = directorIn;
    }
    
