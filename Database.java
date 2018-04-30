@@ -29,15 +29,17 @@ public class Database {
             String emailAddress = nextLine.next();
             String phoneNumber = nextLine.next();
             String status = nextLine.next();
+            String rentalId = nextLine.next();
+            int remainingTime = nextLine.nextInt();
             String Id = nextLine.next();
          
             if (Id.equals("0")) { //Client
                users.add(new Client(username, password, name, address,
-                        emailAddress, phoneNumber, status, Id));
+                        emailAddress, phoneNumber, status, rentalId, remainingTime, Id));
             }
             else { //Id.equals("1") ((Librarian))
                users.add(new Librarian(username, password, name, address,
-                        emailAddress, phoneNumber, status, Id));
+                        emailAddress, phoneNumber, status, rentalId, remainingTime, Id));
             }
          }
       

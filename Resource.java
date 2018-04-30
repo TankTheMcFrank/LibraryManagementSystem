@@ -18,7 +18,7 @@ public class Resource {
       String output = "\nLibrary ID Number: \t" + libraryIdNumber
                   + "\nRental Time Duration: \t" + rentalTimeDuration
                   + "\nReservation Count: \t\t" + reservationCount
-                  + "\nAvailable Count: \t\t\t" + availableCount
+                  + "\nAvailable Count: \t\t" + availableCount
                   + "\nChecked Out Count: \t\t" + checkedOutCount;
       return output;
    }
@@ -27,8 +27,20 @@ public class Resource {
       return libraryIdNumber;
    }
    
-   public void decrementResourceCount() {
+   public void decrementAvailableCount() {
       availableCount -= 1;
+   }
+   
+   public void incrementAvailableCount() {
+      availableCount += 1;
+   }
+   
+   public void decrementCheckedOutCount() {
+      checkedOutCount -= 1;
+   }
+   
+   public void incrementCheckedOutCount() {
+      checkedOutCount += 1;
    }
    
    public int getAvailableCount() {

@@ -23,8 +23,24 @@ public class LibraryManagementSystem {
 	 * Takes in a libraryIdNumber (int) and attempts to add
 	 * resource to database
 	 */
-   public boolean addResource(int libraryIdNumber) {
-      return false;
+   public void addResource() {
+      for (Resource r : resources) {
+         System.out.println(r.toString());
+      }
+      
+      System.out.print("Library ID Number of the resource which you'd like to add: ");
+      String newID = input.nextLine();
+      
+      for (Resource r: resources) {
+         if (r.getLibraryIdNumber() == Integer.parseInt(newID)) {
+            r.incrementAvailableCount();
+            System.out.println(r.toString());
+            return;
+         }
+      }
+      System.out.println("Library ID Number does not match anything that we are "
+         + "currently keeping inventory of at this time.");
+      return;
    }
 
 	/* 
@@ -34,7 +50,7 @@ public class LibraryManagementSystem {
    public void deleteResource(int libraryIdNumberIn) {
       for (Resource r : resources) {
          if (r.libraryIdNumber == libraryIdNumberIn) {
-            r.decrementResourceCount();
+            r.decrementAvailableCount();
             System.out.println("Avaialable count for this resource "
                               + "has been decremented.");
             if (r.getAvailableCount() + r.getCheckedOutCount() <= 0) {
@@ -54,7 +70,7 @@ public class LibraryManagementSystem {
    
    public boolean createNewUser(String usernameIn, String passwordIn, String nameIn, 
    			String addressIn, String emailAddressIn, String phoneNumberIn, String statusIn,
-           String otherIdIn) {
+           String rentalId, int rentalTimeRemaining, String otherIdIn) {
       System.out.println("Select type of account to create:");
       System.out.println("\t1.) Client");
       System.out.println("\t2.) Librarian");
@@ -68,14 +84,16 @@ public class LibraryManagementSystem {
          if (selection == 1) {
             Client newClient = new Client(usernameIn, passwordIn, nameIn,
                                              addressIn, emailAddressIn, phoneNumberIn,
-                                             statusIn, otherIdIn);
+                                             statusIn, rentalId, rentalTimeRemaining, 
+                                             otherIdIn);
             users.add(newClient);
             users.toString();
             return true;
          } else { //selecton == 2
             Librarian newLibrarian = new Librarian(usernameIn, passwordIn, nameIn,
                                              addressIn, emailAddressIn, phoneNumberIn,
-                                             statusIn, otherIdIn);
+                                             statusIn, rentalId, rentalTimeRemaining,
+                                             otherIdIn);
             users.add(newLibrarian);
             users.toString();
             return true;
@@ -229,10 +247,9 @@ public class LibraryManagementSystem {
                
             }
          }
-         
-         System.out.println("No matching accounts found.");
-         //Else look at the next User
       }
+      System.out.println("No matching accounts found.");
+         //Else look at the next User
    }
       
    public void editUserStatus(String usernameIn) {
@@ -256,6 +273,117 @@ public class LibraryManagementSystem {
       //No user with this username found
       System.out.println("No account for this username has been found.");
       return;
+   }
+   
+   public void checkout(String usernameIn, String rentalIdIn, int rentalTimeIn) {
+      User cur = null; 
+      
+      for (User u : users) {
+         if (u.getUsername().equalsIgnoreCase(usernameIn)) {
+            if (!(u.getRentalId().equals("0"))) { //Client already has a resource rented
+               System.out.println("User is already renting a resource. Please check "
+                           + "the resource back in, first.");
+               return;
+            }
+            cur = u;
+         }
+      }
+      
+      if (cur ==  null) {
+         System.out.println("Username not found.");
+         return;
+      }
+      
+      Resource res = null;
+      
+      for (Resource r : resources) {
+         if (r.getLibraryIdNumber() == Integer.parseInt(rentalIdIn)) {
+            res = r;
+         }
+      }
+      
+      if (res == null) {
+         System.out.println("Resource ID not found.");
+         return;
+      }
+      
+      if (res.getAvailableCount() <= 0) {
+         System.out.println("No more copies of Resource are available");
+         return;
+      }
+      
+      res.decrementAvailableCount();
+      res.incrementCheckedOutCount();
+      cur.setRentalId(rentalIdIn);
+      cur.setRentalTimeRemaining(rentalTimeIn);
+      System.out.println("Item successfully checked out.");
+      return;
+   }
+   
+   public void checkin(String usernameIn, String rentalIdIn) {
+      User cur = null;
+      
+      for (User u : users) {
+         if (u.getUsername().equalsIgnoreCase(usernameIn)) {
+            if (u.getRentalId().equals("0")) { //Client already has a resource rented
+               System.out.println("User does not have a resource checked out.");
+               return;
+            }
+            
+            cur = u;
+         }
+      }
+      
+      if (cur ==  null) {
+         System.out.println("Username not found.");
+         return;
+      }
+      
+      if (!(rentalIdIn.equals(cur.getRentalId()))) {
+         System.out.println("Rental ID's don't match... User did not return the proper resource.");
+         return;
+      }
+      
+      for (Resource r : resources) {
+         if (r.getLibraryIdNumber() == Integer.parseInt(rentalIdIn)) {
+            r.incrementAvailableCount();
+            r.decrementCheckedOutCount();
+            break;
+         }
+      }
+      cur.setRentalId("0");
+      cur.setRentalTimeRemaining(0);
+      System.out.println("Item successfully checked in.");
+      return;
+   }
+   
+   public void payFines(User currentUser) {
+      System.out.println("\nYou owe $15 in late fees.");
+      
+      System.out.println("Enter Credit Card number:");
+      String cardNumber = input.nextLine();
+      
+      System.out.println("\nEnter CSV on back of card:");
+      String csv = input.nextLine();
+      
+      System.out.println("Thank you. Please return the resource "
+            + "as soon as possible in order to avoid further fines.");
+      
+      currentUser.setRentalTimeRemaining(0);
+   }
+   
+   public void requestCheckOut(String resID) {
+      for (Resource r : resources) {
+         if (r.getLibraryIdNumber() == Integer.parseInt(resID)) {
+            if (r.getAvailableCount() > 0) {
+               System.out.println("This resource is available for checkout.");
+            }
+            return;
+         }
+      }
+      
+      //Resource not found
+      System.out.println("Resource is not available for check out.");
    }
 }
 

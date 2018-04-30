@@ -106,42 +106,18 @@ public class WebInterface {
          return false;
       }
    }
-
-   // public boolean logIn() {
-      // System.out.print("\nPlease enter your username: ");
-      // String usernameIn = input.nextLine();
-      // System.out.print("\nPlease enter your password: ");
-      // String passwordIn = input.nextLine();
-   //    
-      // currentUser = system.validateAccount(usernameIn, passwordIn);
-   //    
-      // if (currentUser != null) {
-         // System.out.println(currentUser.toString());
-         // return true;
-      // } else {
-         // System.out.println("User Does Not Exist.");
-         // return false;
-      // }
-   // }
-   
-   // public int menuOptions() {
-      // if (currentUser instanceof Librarian) {
-         // return menuOptionsLibrarian();
-      // } else { //currentUser instanceof Client
-         // return menuOptionsClient();
-      // }
-   // }
    
    private int menuOptionsClient() {
       int selection = -1;
       
       while (selection != 0) {
          System.out.println("\nSelect one of the options listed below: ");
-         System.out.println("\t1.) Check Out Resource");
-         System.out.println("\t2.) Check In Resource");
-         System.out.println("\t3.) Make Resource Inquiry");
-         System.out.println("\t4.) Change Password");
-         System.out.println("\t5.) Check Current User Status");
+         System.out.println("\t1.) Make Resource Inquiry");
+         System.out.println("\t2.) Change Password");
+         System.out.println("\t3.) Check Current User Status");
+         System.out.println("\t4.) Pay Fines");
+         System.out.println("\t5.) Check Rental Time Remaining");
+         System.out.println("\t6.) Request Check Out");
          System.out.println("\t0.) Log Out");
          System.out.print("Selection: ");
       
@@ -151,19 +127,11 @@ public class WebInterface {
          
             switch (selection) {
                case 1:
-                  System.out.println("\nThis is where you'll be able to check out a resource.");
-                  break;
-               
-               case 2:
-                  System.out.println("\nThis is where you'll be able to check in a resource.");
-                  break;
-                  
-               case 3:
                   System.out.print("Please Enter Library ID number: ");
                   system.makeResourceInquiry(input.nextInt());
                   break;
                   
-               case 4:
+               case 2:
                   System.out.print("Old Password: ");
                   String oldPassword = input.nextLine();
                   System.out.print("New Password: ");
@@ -177,12 +145,37 @@ public class WebInterface {
                   }
                   break;
                   
-               case 5:
+               case 3:
                   if (currentUser.getStatus().equals("0")) {
                      System.out.println("Status: Good\n");
                   } else { //.equals("1")
                      System.out.println("Status: Suspended\n");
                   }
+                  break;
+                  
+               case 4:
+                  if (currentUser.getRentalTimeRemaining() >= 0) {
+                     System.out.println("There are no fines on this account.");
+                  } else {
+                     system.payFines(currentUser);
+                  }
+                  break;
+                  
+               case 5:
+                  if (!currentUser.getRentalId().equals("0")) {
+                     System.out.println("There are " + 
+                           currentUser.getRentalTimeRemaining() 
+                           + " days left in the rental.");
+                  } else {
+                     System.out.println("You do not have any resources checked "
+                        + "at the moment.");
+                  }
+                  break;
+                  
+               case 6:
+                  System.out.print("Enter resource ID which you wish to check out: ");
+                  String resID = input.nextLine();
+                  system.requestCheckOut(resID);
                   break;
                
                case 0:
@@ -219,6 +212,7 @@ public class WebInterface {
          System.out.println("\t9.) Change Password");
          System.out.println("\t10.) Check Current User Status");
          System.out.println("\t11.) Edit User Status");
+         System.out.println("\t12.) Check Rental Time Remaining");
          System.out.println("\t0.) Log Out");
          System.out.print("Selection: ");
       
@@ -228,11 +222,20 @@ public class WebInterface {
          
             switch (selection) {
                case 1:
-                  System.out.println("\nThis is where you'll be able to check out a resource.");
+                  System.out.print("Enter the username of the person who wishes to check out a resource: ");
+                  String userIn1 = input.nextLine();
+                  System.out.println("Library Rental ID: ");
+                  String rentalId = input.nextLine();
+                  System.out.println("Default rental time is 14 days.");
+                  system.checkout(userIn1, rentalId, 14);
                   break;
                
                case 2:
-                  System.out.println("\nThis is where you'll be able to check in a resource.");
+                  System.out.print("Enter the username of the person who wishes to check in a resource: ");
+                  String userIn2 = input.nextLine();
+                  System.out.println("Library Rental ID: ");
+                  String rentalId2 = input.nextLine();
+                  system.checkin(userIn2, rentalId2);
                   break;
                   
                case 3:
@@ -258,10 +261,13 @@ public class WebInterface {
                   String statusIn = input.nextLine();
                   System.out.print("ID: ");
                   String otherIdIn = input.nextLine();
+                  String rentId = "0";
+                  int rentalTimeRemaining = 0;
                   
                   system.createNewUser(usernameIn, passwordIn, nameIn,
                                              addressIn, emailAddressIn, phoneNumberIn,
-                                             statusIn, otherIdIn);
+                                             statusIn, rentId, rentalTimeRemaining, 
+                                             otherIdIn);
                   break;                            
                  
                case 5:
@@ -273,7 +279,7 @@ public class WebInterface {
                   break;
                   
                case 6:
-                  //Add Resource
+                  system.addResource();
                   break;
                   
                case 7:
@@ -316,6 +322,17 @@ public class WebInterface {
                   String userIn = input.nextLine();
                   system.editUserStatus(userIn);
                   break;
+                  
+               case 12:
+                  if (!currentUser.getRentalId().equals("0")) {
+                     System.out.println("There are " + 
+                           currentUser.getRentalTimeRemaining() 
+                           + " days left in the rental.");
+                  } else {
+                     System.out.println("You do not have any resources checked "
+                        + "at the moment.");
+                  }
+                  break;
                
                case 0:
                   System.out.println("\nLogging out...");
@@ -326,6 +343,7 @@ public class WebInterface {
             }
          } catch (Exception e) {
             System.out.println("Invalid Input.\n");
+            System.out.println(e);
             input = null;
             input = new Scanner(System.in);
             continue;

@@ -6,9 +6,12 @@ public abstract class User {
    protected String username;
    protected String password;
    protected String status;
+   protected String rentalId;
+   protected int rentalTimeRemaining;
 
    public User(String usernameIn, String passwordIn, String nameIn, 
-   			String addressIn, String emailAddressIn, String phoneNumberIn, String statusIn) {
+   			String addressIn, String emailAddressIn, String phoneNumberIn, String statusIn,
+            String rentalIdIn, int rentalTimeRemainingIn) {
       username = usernameIn;
       password = passwordIn;
       name = nameIn;
@@ -16,6 +19,8 @@ public abstract class User {
       emailAddress = emailAddressIn;
       phoneNumber = phoneNumberIn;
       status = statusIn;
+      rentalId = rentalIdIn;
+      rentalTimeRemaining = rentalTimeRemainingIn;
    }
    
    public String getUsername() {
@@ -48,6 +53,22 @@ public abstract class User {
    
    public String getStatus() {
       return status;
+   }
+   
+   public String getRentalId() {
+      return rentalId;
+   }
+   
+   public void setRentalId(String rentalIdIn) {
+      rentalId = rentalIdIn;
+   }
+   
+   public int getRentalTimeRemaining() {
+      return rentalTimeRemaining;
+   }
+   
+   public void setRentalTimeRemaining(int rentalTimeRemainingIn) {
+      rentalTimeRemaining = rentalTimeRemainingIn;
    }
    
    public void setStatus(String statusIn) {
